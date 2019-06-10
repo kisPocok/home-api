@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/kisPocok/home-api/home"
+	"go.uber.org/zap"
 )
 
 func main() {
@@ -13,6 +14,9 @@ func main() {
 
 	port := os.Getenv("PORT")
 
-	api := home.NewHomeAPI()
+	logger, _ := zap.NewProduction()
+	logger.Info("Home API started", zap.String("port", port))
+
+	api := home.NewHomeAPI(logger)
 	log.Fatal(http.ListenAndServe(":"+port, api.Router()))
 }

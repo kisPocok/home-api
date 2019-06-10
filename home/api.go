@@ -5,14 +5,20 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/prometheus/common/log"
+	"go.uber.org/zap"
 )
 
 // NewHomeAPI creates instance
-func NewHomeAPI() Api {
-	return Api{}
+func NewHomeAPI(logger *zap.Logger) Api {
+	return Api{
+		log: logger,
+	}
 }
 
-type Api struct{}
+type Api struct {
+	log *zap.Logger
+}
 
 // Router returns a mux router
 func (api *Api) Router() *mux.Router {
@@ -30,7 +36,8 @@ func (api *Api) Router() *mux.Router {
 
 func (api *Api) heartBeatReport(w http.ResponseWriter, r *http.Request) {
 
-	// TODO save the actual heart beat
+	// Log the usage
+	log.Info("heart-beat", zap.String("label", "heart-beat"))
 
 	w.WriteHeader(http.StatusNoContent)
 	_, _ = fmt.Fprintf(w, "{}")
