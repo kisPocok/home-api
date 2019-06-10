@@ -37,7 +37,7 @@ func (api *Api) Router() *mux.Router {
 func (api *Api) heartBeatReport(w http.ResponseWriter, r *http.Request) {
 
 	// Log the usage
-	log.Info("heart-beat", zap.String("label", "heart-beat"))
+	log.Info("heart-beat", zap.String("label", "heartbeat"))
 
 	w.WriteHeader(http.StatusNoContent)
 	_, _ = fmt.Fprintf(w, "{}")

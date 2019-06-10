@@ -10,8 +10,6 @@ import (
 )
 
 func main() {
-	println("Home API started.")
-
 	port := os.Getenv("PORT")
 
 	log := logger.New()
