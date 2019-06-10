@@ -32,3 +32,8 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+[metadata.heroku]
+  root-package = "github.com/kisPocok/home-api"
+  go-version = "1.12.0"
+  install = [ "./..." ]
