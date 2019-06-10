@@ -15,6 +15,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	logger, _ := zap.NewProduction()
+	logger = logger.With(zap.Namespace("@fields"))
 	logger.Info("Home API started", zap.String("port", port))
 
 	api := home.NewHomeAPI(logger)
