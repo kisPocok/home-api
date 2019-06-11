@@ -14,4 +14,8 @@
 ## Client Installation
 
 - ssh to RPI
-- `crontab -e` then add `* * * * * /path/to/hartbeat.sh`.
+- `touch heartbeat.sh`
+- `chmod +x heartbeat.sh`
+- `echo "#\!/usr/bin/env bash" >> heartbeat.sh`
+- `echo "curl -XPOST -v https://your-awesome-app.herokuapp.com/home/v1/heartbeat" >> heartbeat.sh`
+- `crontab -e` then add `* * * * * /path/to/heartbeat.sh`.
