@@ -12,7 +12,5 @@ func New() *zap.Logger {
 	config.EncoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
 
 	logger, _ := config.Build()
-	logger = logger.With(zap.Namespace("@fields"))
-
 	return logger
 }
