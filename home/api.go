@@ -70,13 +70,13 @@ func (api *Api) flowerReport(w http.ResponseWriter, r *http.Request) {
 
 	api.log.Info("flower-report",
 		zap.String("device", f.Get("device")),
+		zap.String("mac", f.Get("mac")),
 		zap.String("framework", f.Get("framework")),
 		zap.Float64("temperature", converter.StrToFloat(f.Get("temperature"))),
 		zap.Int("moisture", converter.StrToInt(f.Get("moisture"))),
 		zap.Int("light", converter.StrToInt(f.Get("light"))),
 		zap.Int("conductivity", converter.StrToInt(f.Get("conductivity"))),
 		zap.Int("battery", converter.StrToInt(f.Get("battery"))),
-		zap.Int("mac", converter.StrToInt(f.Get("mac"))),
 	)
 
 	w.WriteHeader(http.StatusNoContent)
