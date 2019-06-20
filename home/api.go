@@ -62,6 +62,12 @@ func (api *Api) flowerReport(w http.ResponseWriter, r *http.Request) {
 	}
 
 	f := r.Form
+	if f.Get("device") == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		_, _ = fmt.Fprintf(w, `{"error":"missing device name"}`)
+		return
+	}
+
 	api.log.Info("flower-report",
 		zap.String("device", f.Get("device")),
 		zap.String("framework", f.Get("framework")),
