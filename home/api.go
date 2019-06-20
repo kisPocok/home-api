@@ -76,6 +76,7 @@ func (api *Api) flowerReport(w http.ResponseWriter, r *http.Request) {
 		zap.Int("light", converter.StrToInt(f.Get("light"))),
 		zap.Int("conductivity", converter.StrToInt(f.Get("conductivity"))),
 		zap.Int("battery", converter.StrToInt(f.Get("battery"))),
+		zap.Int("mac", converter.StrToInt(f.Get("mac"))),
 	)
 
 	w.WriteHeader(http.StatusNoContent)
