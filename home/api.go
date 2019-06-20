@@ -56,6 +56,7 @@ func (api *Api) heartBeatReport(w http.ResponseWriter, r *http.Request) {
 
 func (api *Api) flowerReport(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
+		api.log.Error("flower internal error")
 		w.WriteHeader(http.StatusInternalServerError)
 		_, _ = fmt.Fprintf(w, "{}")
 		return
@@ -63,6 +64,7 @@ func (api *Api) flowerReport(w http.ResponseWriter, r *http.Request) {
 
 	f := r.Form
 	if f.Get("device") == "" {
+		api.log.Error("flower missing device")
 		w.WriteHeader(http.StatusBadRequest)
 		_, _ = fmt.Fprintf(w, `{"error":"missing device name"}`)
 		return
